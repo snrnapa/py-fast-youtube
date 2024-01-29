@@ -14,7 +14,7 @@ def read_item():
     f = open("dllist.txt", "r")
     datalist = f.readlines()
     # 動画用
-    ydl_opts = {"format": "best"}
+    ydl_opts = {"format": "best", "outtmpl": "completed/%(id)s.%(ext)s"}
     # 音声用
     # ydl_opts = {'format': 'bestaudio/best'}
 
