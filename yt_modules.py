@@ -7,8 +7,17 @@ from fastapi.responses import FileResponse
 
 
 def download_yt(movie_url: str):
+    ydl_opts = {
+        "writeautomaticsub": "False",
+    }
+
+    with YoutubeDL(ydl_opts) as ydl:
+        res = ydl.extract_info(movie_url, download=False)
+
+    print(res["title"])  # タイトル
+
     # 動画用
-    file_name = "%(id)s.%(ext)s"
+    file_name = "%(title)s.%(ext)s"
 
     file_path = "files/{}".format(file_name)
     print(file_path)
@@ -21,7 +30,7 @@ def download_yt(movie_url: str):
     print(movie_url)
     with YoutubeDL(ydl_opts) as ydl:
         result = ydl.download([movie_url])
-        print(result)
+        print(file_name)
 
 
 async def get_file(filename: str):
