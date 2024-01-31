@@ -14,28 +14,13 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.get("/yt_donwload")
-def read_item():
-    yt_modules.download_yt("https://www.youtube.com/watch?v=HHjQe9DYwN0")
-    # yt_modules.get_file()
-    # f = open("dllist.txt", "r")
-    # datalist = f.readlines()
-    # # 動画用
-    # ydl_opts = {"format": "best", "outtmpl": "completed/%(id)s.%(ext)s"}
-    # # 音声用
-    # # ydl_opts = {'format': 'bestaudio/best'}
-
-    # for data in datalist:
-    #     print("***********開始*******************")
-    #     print(data)
-    #     with YoutubeDL(ydl_opts) as ydl:
-    #         result = ydl.download([data])
-    #         print(result)
+@app.get("/yt_donwload/{url:path}")
+def read_item(url: str):
+    yt_modules.download_yt(url)
 
 
 @app.get("/get_file/{filename:path}")
 async def get_file(filename: str):
-    """任意ファイルのダウンロード"""
     current = Path()
     file_path = current / "files" / filename
 
