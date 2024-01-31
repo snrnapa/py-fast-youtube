@@ -6,14 +6,15 @@ from datetime import datetime
 from fastapi.responses import FileResponse
 
 
-def download_yt(movie_url: str):
+def read_youtube_info(movie_url: str):
     ydl_opts = {
         "writeautomaticsub": "False",
     }
-
     with YoutubeDL(ydl_opts) as ydl:
         res = ydl.extract_info(movie_url, download=False)
 
+
+def download_yt(movie_url: str):
     file_name = "%(title)s.%(ext)s"
 
     file_path = "files/{}".format(file_name)
