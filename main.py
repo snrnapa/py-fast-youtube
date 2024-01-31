@@ -16,7 +16,8 @@ async def root():
 
 @app.get("/yt_donwload")
 def read_item():
-    yt_modules.download_yt()
+    yt_modules.download_yt("https://www.youtube.com/watch?v=HHjQe9DYwN0")
+    # yt_modules.get_file()
     # f = open("dllist.txt", "r")
     # datalist = f.readlines()
     # # 動画用
