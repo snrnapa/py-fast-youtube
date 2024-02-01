@@ -38,11 +38,7 @@ async def get_file(filename: str):
     current = Path()
     file_path = current / "files" / filename
 
-    now = datetime.now()
-
-    response = FileResponse(
-        path=file_path, filename=f"download_{now.strftime('%Y%m%d%H%M%S')}_{filename}"
-    )
+    response = FileResponse(path=file_path, filename=filename)
 
     return response
 

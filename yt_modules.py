@@ -31,19 +31,6 @@ def download_yt(movie_url: str):
         result = ydl.download([movie_url])
 
 
-async def get_file(filename: str):
-    current = Path()
-    file_path = current / "files" / filename
-
-    now = datetime.now()
-
-    response = FileResponse(
-        path=file_path, filename=f"download_{now.strftime('%Y%m%d%H%M%S')}_{filename}"
-    )
-
-    return response
-
-
 def rename_file(file_name: str):
     after_name = file_name.replace(" ", "")
     os.rename(file_name, after_name)
