@@ -33,5 +33,7 @@ def download_yt(movie_url: str):
 
 def rename_file(file_name: str):
     after_name = file_name.replace(" ", "")
+    after_name = after_name.replace(".webm", ".mp3")
+
     os.rename(file_name, after_name)
     print(after_name)
