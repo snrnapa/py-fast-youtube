@@ -52,6 +52,7 @@ async def get_file():
     files = os.listdir("files")
     result_list = []
     for file in files:
+        yt_modules.rename_file("files/" + file)
         movie_info = {"title": file}
         result_list.append(movie_info)
 
