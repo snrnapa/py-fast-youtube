@@ -43,6 +43,16 @@ async def get_file(filename: str):
     return response
 
 
+@app.get("/delete_file/{filename:path}")
+async def get_file(filename: str):
+    current = Path()
+    file_path = current / "files" / filename
+
+    # print(file_path)
+
+    files = os.remove(file_path)
+
+
 @app.get("/file_info")
 async def get_file():
     files = os.listdir("files")
