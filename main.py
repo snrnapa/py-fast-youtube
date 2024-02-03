@@ -2,6 +2,8 @@ from pathlib import Path
 from datetime import datetime
 import yt_modules
 from starlette.middleware.cors import CORSMiddleware  # 追加
+from pydantic import BaseModel  # リクエストbodyを定義するために必要
+from typing import List  # ネストされたBodyを定義するために必要
 
 import uvicorn
 
@@ -23,14 +25,18 @@ app.add_middleware(
 )
 
 
-@app.get("/ydl-back")
-async def root():
-    return {"message": "Hello World"}
+class Movies(BaseModel):
+    url: str
 
 
-@app.get("/ydl-back/yt_donwload/{url:path}")
-def read_item(url: str):
-    yt_modules.download_yt(url)
+@app.post("/ydl-back")
+async def root(movies: Movies):
+    return {"message": "Hello World", "targeturl": movies.url}
+
+
+@app.post("/ydl-back/yt_donwload/")
+def read_item(movies: Movies):
+    yt_modules.download_yt(movies.url)
 
 
 @app.get("/ydl-back/get_file/{filename:path}")
