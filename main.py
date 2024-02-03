@@ -23,17 +23,17 @@ app.add_middleware(
 )
 
 
-@app.get("/")
+@app.get("/ydl_back")
 async def root():
     return {"message": "Hello World"}
 
 
-@app.get("/yt_donwload/{url:path}")
+@app.get("/ydl_back/yt_donwload/{url:path}")
 def read_item(url: str):
     yt_modules.download_yt(url)
 
 
-@app.get("/get_file/{filename:path}")
+@app.get("/ydl_back/get_file/{filename:path}")
 async def get_file(filename: str):
     current = Path()
     file_path = current / "files" / filename
@@ -43,7 +43,7 @@ async def get_file(filename: str):
     return response
 
 
-@app.get("/delete_file/{filename:path}")
+@app.get("/ydl_back/delete_file/{filename:path}")
 async def get_file(filename: str):
     current = Path()
     file_path = current / "files" / filename
@@ -53,7 +53,7 @@ async def get_file(filename: str):
     files = os.remove(file_path)
 
 
-@app.get("/file_info")
+@app.get("/ydl_back/file_info")
 async def get_file():
     files = os.listdir("files")
     result_list = []
