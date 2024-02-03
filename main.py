@@ -34,7 +34,7 @@ async def root(movies: Movies):
     return {"message": "Hello World", "targeturl": movies.url}
 
 
-@app.post("/ydl-back/yt_donwload/")
+@app.post("/ydl-back/yt_donwload")
 def read_item(movies: Movies):
     yt_modules.download_yt(movies.url)
 
