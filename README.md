@@ -3,5 +3,7 @@ pip3 install -r requirements.txt
 
 uvicorn main:app --reload 
 
+python3 -m uvicorn main:app --reload
+
 ## pip check
 pip freeze
