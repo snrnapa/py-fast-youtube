@@ -27,6 +27,8 @@ app.add_middleware(
 
 class Movies(BaseModel):
     url: str
+    music_flg: bool
+    movie_flg: bool
 
 
 @app.post("/ydl-back")
@@ -36,7 +38,7 @@ async def root(movies: Movies):
 
 @app.post("/ydl-back/yt_donwload")
 def read_item(movies: Movies):
-    yt_modules.download_yt(movies.url)
+    yt_modules.download_yt(movies.url, movies.music_flg, movies.movie_flg)
 
 
 @app.get("/ydl-back/get_file/{filename:path}")
