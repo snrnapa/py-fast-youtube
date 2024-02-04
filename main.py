@@ -52,13 +52,25 @@ async def get_file(filename: str):
 
 
 @app.get("/ydl-back/delete_file/{filename:path}")
-async def get_file(filename: str):
+async def deletes(filename: str):
     current = Path()
     file_path = current / "files" / filename
 
     # print(file_path)
 
     files = os.remove(file_path)
+
+
+@app.get("/ydl-back/delete_all")
+async def all_delete():
+    current = Path()
+    file_path = current / "files/"
+
+    # print(file_path)
+    for f in os.listdir(file_path):
+        os.remove(
+            os.path.join(file_path, f),
+        )
 
 
 @app.get("/ydl-back/file_info")
