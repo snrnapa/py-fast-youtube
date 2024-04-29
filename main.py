@@ -79,6 +79,7 @@ async def get_file():
     result_list = []
     movie_no = 1
     for file in files:
+        # 音声用ファイルがもともとの名称ではスマホで再生できないので変換
         yt_modules.rename_file("files/" + file)
         movie_info = {"title": file, "no": movie_no}
         result_list.append(movie_info)
