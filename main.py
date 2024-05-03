@@ -18,7 +18,7 @@ app = FastAPI()
 # CORSを回避するために追加（今回の肝）
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://vite-ppsldzjoc-snrnapas-projects.vercel.app"],
+    allow_origins=["https://vite-ydl.vercel.app/"],
     allow_credentials=True,  # 追記により追加
     allow_methods=["GET", "POST", "PUT", "DELETE"],  # 追記により追加
     allow_headers=["*"],  # 追記により追加
