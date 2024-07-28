@@ -4,6 +4,9 @@ import yt_modules
 from starlette.middleware.cors import CORSMiddleware  # 追加
 from pydantic import BaseModel  # リクエストbodyを定義するために必要
 from typing import List  # ネストされたBodyを定義するために必要
+from fastapi.responses import StreamingResponse
+import zipfile
+import io
 
 import uvicorn
 
@@ -87,3 +90,32 @@ async def get_file():
 
     print(result_list)
     return result_list
+
+@app.get("/ydl-back/download_all")
+async def donwload_all_files():
+    current = Path()
+    file_path = current / "files/"
+    zip_filename = "all_files.zip"
+
+    # デバッグ用のログを追加
+    print(f"file_path: {file_path}")
+
+    s = io.BytesIO()
+    with zipfile.ZipFile(s, "w" , zipfile.ZIP_DEFLATED) as zf:
+        for file in os.listdir(file_path):
+            file_full_path = os.path.join(file_path, file)
+            # デバッグ用のログを追加
+            print(f"Adding file to zip: {file_full_path}")
+            zf.write(file_full_path , arcname=file)
+    s.seek(0)
+    response = StreamingResponse(s, media_type="application/zip")
+    response.headers["Content-Disposition"] = f"attachment; filename={zip_filename}"
+    return response
+    
+
+
+if __name__ == "__main__":
+    directory = "files"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
