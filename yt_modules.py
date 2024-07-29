@@ -50,4 +50,5 @@ def rename_file(file_name: str):
     if "part" not in file_name:
         after_name = file_name.replace(" ", "")
         after_name = after_name.replace(".webm", ".mp3")
+        after_name = after_name.replace(".m4a", ".mp3")
         os.rename(file_name, after_name)
