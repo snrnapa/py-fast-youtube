@@ -8,7 +8,6 @@ from fastapi.responses import StreamingResponse
 import zipfile
 import io
 
-import uvicorn
 
 import os
 
@@ -17,6 +16,8 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
 app = FastAPI()
+
+OUTPUT_DIRECTORY = "files"
 
 # CORSを回避するために追加（今回の肝）
 app.add_middleware(
@@ -115,7 +116,6 @@ async def donwload_all_files():
 
 
 if __name__ == "__main__":
-    directory = "files"
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+    import uvicorn
+    os.makedirs(OUTPUT_DIRECTORY ,exist_ok=True)
     uvicorn.run(app, host="0.0.0.0", port=8000)
