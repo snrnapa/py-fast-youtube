@@ -1,4 +1,8 @@
-
+# デプロイ
+```
+mkdir -p api/static
+cp -r view/dist/* api/static/
+```
 
 # バックエンド
 ```python
