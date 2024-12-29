@@ -8,6 +8,7 @@ exceptiongroup==1.2.2
 fastapi==0.70.0
 h11==0.14.0
 idna==3.10
+mangum==0.19.0
 mutagen==1.47.0
 pycryptodomex==3.21.0
 pydantic==1.10.19

@@ -7,6 +7,7 @@ from typing import List  # ネストされたBodyを定義するために必要
 from fastapi.responses import StreamingResponse
 import zipfile
 import io
+from mangum import Mangum
 
 
 import os
@@ -16,6 +17,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
 app = FastAPI()
+handler = Mangum(app)
 
 OUTPUT_DIRECTORY = "files"
 
