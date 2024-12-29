@@ -6,7 +6,6 @@ from pydantic import BaseModel  # リクエストbodyを定義するために必
 from typing import List  # ネストされたBodyを定義するために必要
 import zipfile
 import io
-from mangum import Mangum
 
 
 import os
@@ -18,9 +17,9 @@ from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
-app.mount("/static" , StaticFiles(directory="static") , name="static")
+# app.mount("/static" , StaticFiles(directory="static") , name="static")
 
-handler = Mangum(app)
+
 
 OUTPUT_DIRECTORY = "files"
 
