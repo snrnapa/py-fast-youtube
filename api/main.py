@@ -4,7 +4,6 @@ import yt_modules
 from starlette.middleware.cors import CORSMiddleware  # 追加
 from pydantic import BaseModel  # リクエストbodyを定義するために必要
 from typing import List  # ネストされたBodyを定義するために必要
-from fastapi.responses import StreamingResponse
 import zipfile
 import io
 from mangum import Mangum
@@ -15,8 +14,12 @@ import os
 
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
+from fastapi.responses import StreamingResponse
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
+app.mount("/static" , StaticFiles(directory="static") , name="static")
+
 handler = Mangum(app)
 
 OUTPUT_DIRECTORY = "files"
