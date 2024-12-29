@@ -1,7 +1,9 @@
-## 環境構築
+
+
+# バックエンド
 ```python
 python3 -m venv venv
-source venv/bin/activate
+source api/venv/bin/activate
 pip3 install -r requirements.txt
 ```
 ## Getting Start
@@ -16,7 +18,7 @@ pip freeze
 ```
 ## やめるとき
 ```
-source venv/bin/deactivate
+deactivate
 ```
 
 ## 参考サイト
